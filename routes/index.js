@@ -4,7 +4,7 @@ var events = require('../events');
 
 // Main page
 router.get('/', function(req, res) {
-  res.render('index.html', { title: 'Express' });
+  res.render('index.html', { title: 'Pretio Geo' });
 });
 
 // Long-running SSE connection
