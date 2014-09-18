@@ -64,6 +64,6 @@ var udpServer = udp.createSocket('udp4', function(msg, remote) {
   }
 });
 
-udpServer.bind(6306);
+udpServer.bind(6306, '0.0.0.0');
 
 module.exports = app;

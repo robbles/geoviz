@@ -1,5 +1,5 @@
 // settings
-var pointTimeout = 5000;
+var pointTimeout = 30000;
 var zoom = 5;
 var center = [39.64, -98.086];
 
