@@ -1,5 +1,5 @@
 // settings
-var pointTimeout = 30000;
+var pointTimeout = 10000;
 var zoom = 5;
 var center = [39.64, -98.086];
 
@@ -13,20 +13,24 @@ L.tileLayer('http://{s}.tiles.mapbox.com/v3/pretio.jhgjhh79/{z}/{x}/{y}.png', {
 
 function addPoint(latitude, longitude, text) {
 
-  var customMarker = L.icon([latitude, longitude], {
+  var customMarker = L.icon({
     iconUrl: '../img/marker.png',
 
     iconSize:     [50, 68], // size of the icon
     iconAnchor:   [25, 68], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, -68] // point from which the popup should open relative to the iconAnchor
-  }).addTo(map);
+  });
+
+  var marker = L.marker([latitude, longitude, text], {icon: customMarker});
+
+  marker.addTo(map);
 
   if(text) {
-    customMarker.bindPopup(text);
+    marker.bindPopup(text);
   }
 
   setTimeout(function() {
-    map.removeLayer(customMarker);
+    map.removeLayer(marker);
   }, pointTimeout);
 }
 
