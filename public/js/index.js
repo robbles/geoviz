@@ -12,19 +12,21 @@ L.tileLayer('http://{s}.tiles.mapbox.com/v3/pretio.jhgjhh79/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 function addPoint(latitude, longitude, text) {
-  var circle = L.circleMarker([latitude, longitude], {
-    radius: 10,
-    color: 'green',
-    fillColor: 'lightgreen',
-    fillOpacity: 0.3
+
+  var customMarker = L.icon([latitude, longitude], {
+    iconUrl: 'l../img/marker.png"',
+
+    iconSize:     [50, 68], // size of the icon
+    iconAnchor:   [25, 68], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -68] // point from which the popup should open relative to the iconAnchor
   }).addTo(map);
 
   if(text) {
-    circle.bindPopup(text);
+    customMarker.bindPopup(text);
   }
 
   setTimeout(function() {
-    map.removeLayer(circle);
+    map.removeLayer(customMarker);
   }, pointTimeout);
 }
 
