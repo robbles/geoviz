@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -47,24 +47,60 @@
 				<section>
 					<h2>About Pretio</h2>
 
-          <!--<ol>-->
-            <!--<li class="fragment"><code>any type</code></li>-->
-            <!--<li class="fragment"><em>of view</em></li>-->
-            <!--<li class="fragment"><strong>fragments</strong></li>-->
-          <!--</ol>-->
+          <ol>
+            <li>We power reward-based advertising on mobile apps and FB games</li>
+            <li>API-driven ad network</li>
+            <li>Cool stuff</li>
+          </ol>
 				</section>
 
         <section>
           <h2>Why this Project</h2>
+          <ul>
+            <li>We wanted to start making visualizations of our data</li>
+            <li>See patterns in geographic location</li>
+            <li>Show traffic changes and shifts in popularity as they happen</li>
+            <li>Investors like pretty graphs!</li>
+          </ul>
         </section>
 
 				<section>
-					<h2>Where's the Data From?</h2>
+          <section>
+            <h2>Where's the Data From?</h2>
+            <ul>
+              <li>Requests to an API that serves mobile ad units</li>
+              <li>Events are published through a Redis server</li>
+              <li>We tapped into the traffic of one of our publishers' apps</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>JSON Event</h3>
+            <pre><code>
+{
+  "@version": "1",
+  "@timestamp": "2014-09-20T02:11:57.681Z",
+  "type": "offers:served",
+  "offer": "3585b8da3f5011e4a11a12313f063e60",
+  "user_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "geoip": {
+    "country_code2": "US",
+    "country_name": "United States",
+    "city_name": "Louisville",
+    "latitude": 38.2542,
+    "longitude": -85.7594,
+    "timezone": "America/New_York"
+  },
+  "tags": ["geo"]
+}
+            </code></pre>
+          </section>
 				</section>
 
 				<section>
 					<h2>Quick Demo</h2>
           <iframe class="image" width=900 height=600 src="http://geo.pretio.in/"></iframe>
+          <>
 				</section>
 
         <!-- FRONT-END APP STUFF -->
@@ -86,7 +122,7 @@
 
         <!-- BACK-END INFRASTRUCTURE STUFF -->
 				<section>
-					<h2>Redis</h2>
+					<h2>Sending Data with UDP</h2>
 				</section>
 
 				<section>
@@ -98,13 +134,16 @@
 				</section>
 
 				<section>
-					<h2>Sending data with UDP</h2>
+					<h2>Redis</h2>
 				</section>
 
         <!-- EXTRA STUFF TO TALK ABOUT -->
 				<section>
 					<h2>Bonus</h2>
-					<h3>Plotting real-time tweet data</h3>
+          <ul>
+            <li>Show server logs from your app</li>
+            <li>Plotting real-time tweet data</li>
+          </ul>
 				</section>
 
 				<section>

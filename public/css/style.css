@@ -13,38 +13,46 @@ a {
 
 #map { height: 640px; }
 
-g {
-    margin-top: 25px;
-    font-size: 21px;
-    text-align: center;
-    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 1s; /* Firefox < 16 */
-        -ms-animation: fadein 1s; /* Internet Explorer */
-         -o-animation: fadein 1s; /* Opera < 12.1 */
-            animation: fadein 1s;
+.leaflet-marker-pane img {
+	position: relative;
+    -webkit-animation: fadein 10s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 10s; /* Firefox < 16 */
+        -ms-animation: fadein 10s; /* Internet Explorer */
+         -o-animation: fadein 10s; /* Opera < 12.1 */
+            animation: fadein 10s;
 }
 
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0% { opacity: 0;top:-30px;}
+    5%   { opacity: 1;top:0px;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 @-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0% { opacity: 0;top:-30px;}
+    5%   { opacity: 1;top:0px;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 @-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0% { opacity: 0;top:-30px;}
+    5%   { opacity: 1;top:0px;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 @-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0% { opacity: 0;top:-30px;}
+    5%   { opacity: 1;top:0px;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 @-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    0% { opacity: 0;top:-30px;}
+    5%   { opacity: 1;top:0px;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
 }
