@@ -17,5 +17,15 @@
 
   {{{body}}}
 
+  <script>
+    $('.leaflet-control-attribution,.leaflet-control-container').hide();
+    onResize = function() {
+	   var pageheight = $('html').outerHeight();
+	   $('#map').css('height', pageheight)
+    }
+    $(document).ready(onResize);
+    $(window).bind('resize', onResize);
+  </script>
+
 </body>
 </html>
