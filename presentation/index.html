@@ -81,9 +81,8 @@
           <section>
             <h2>Where's the Data From?</h2>
             <ul>
-              <li>Requests to an API that serves mobile ad units</li>
-              <li>Events are published through a Redis server</li>
-              <li>We tapped into the traffic of one of our publishers' apps</li>
+              <li>Mobile Ad Unit API</li>
+              <li>Traffic from one of our US-only publishers</li>
             </ul>
           </section>
 
@@ -127,6 +126,7 @@
 					<h2>The Map</h2>
           <ul>
             <li>Uses <a href="http://leafletjs.com/">Leaflet.js</a></li>
+            <li>Custom icons</li>
           </ul>
 				</section>
 
@@ -134,19 +134,18 @@
           <section>
             <h2>Server-Sent Events</h2>
             <ul>
-              <li>A sort-of new HTML5 technology for streaming data to the browser</li>
-              <li>Send data in real-time from a server</li>
+              <li>HTML5</li>
+              <li>Stream data in real-time to the browser</li>
             </ul>
           </section>
 
           <section>
             <h2>Why not Websockets??</h2>
             <ul>
-              <li>Websockets are bidirectional and allow more flexibility</li>
-              <li>Require special server support and are hard to deploy / manage</li>
-              <hr>
-              <li>SSE is just lines of text from a long HTTP connection</li>
-              <li>SSE auto reconnects from the browser!</li>
+              <li>Bidirectional, more flexibility</li>
+              <li>Special server support needed</li>
+              <li>SSE - lines of text from a long HTTP connection</li>
+              <li>Auto reconnects!</li>
             </ul>
           </section>
 
@@ -194,20 +193,20 @@ source.addEventListener('location', function(e) {
             <ul>
               <li>So hot right now</li>
               <li>Event-driven JavaScript on the server</li>
-              <li>Works pretty well for building "real-time" apps and gluing different tech together</li>
+              <li>Good for building "real-time" apps</li>
             </ul>
           </section>
 
           <section>
             <h2>The app</h2>
             <ul>
-              <li>Uses <a href="http://expressjs.com/">Express</a> for rendering pages</li>
+              <li>Uses <a href="http://expressjs.com/">Express</a> for rendering web pages</li>
               <li>Simple UDP server that receives events</li>
             </ul>
           </section>
 
           <section>
-            <h3>Listening for new UDP packets</h3>
+            <h3>Listening for UDP packets</h3>
             <pre><code class="javascript">
 var udpServer = udp.createSocket('udp4', function(msg, remote) {
 
@@ -262,9 +261,9 @@ app.get('/events', function(req, res) {
             <img src="img/logstash.png" height="200" alt="Logstash" />
             <ul>
               <li>A tool for parsing, rewriting and shipping logs</li>
-              <li>Acts like a continuous pipeline of events</li>
+              <li>Continuous pipeline of events</li>
               <li>Connects to almost everything (log files, queues, sockets, DBs, etc.)</li>
-              <li>IP -> Geo is built-in</li>
+              <li>IP &raquo; Geo is built-in</li>
             </ul>
           </section>
 
@@ -298,22 +297,41 @@ output {
 }
             </code></pre>
           </section>
+          <section>
+            <h3>Read your web server logs!</h3>
+            <pre><code class="ruby" style="">
+input {
+  file {
+    path => "/var/log/apache/access.log"
+  }
+}
+filter {
+  grok { 
+    pattern => "%{COMBINEDAPACHELOG}" 
+  }
+}
+            </code></pre>
+          </section>
 				</section>
 
 				<section>
-					<h2>IP Geolocation</h2>
-          <ul>
-            <li>Uses free MaxMind GeoIP database</li>
-            <li>Not very accurate</li>
-            <li>Kansas?</li>
-          </ul>
+          <section>
+            <h2>IP Geolocation</h2>
+            <ul>
+              <li>Uses free MaxMind GeoIP database</li>
+              <li>Not very accurate</li>
+            </ul>
+            <div><img src="img/kansas.png"  alt="" /></div>
+          </section>
 				</section>
 
 				<section>
 					<h2>Redis</h2>
+          <div><img src="img/redis.png"  alt="" /></div>
           <ul>
             <li>Advanced key-value datastore</li>
-            <li>Our API servers publish events here that get picked up by Logstash</li>
+            <li>API Servers publish events to here</li>
+            <li>Logstash picks them up</li>
           </ul>
 				</section>
 
