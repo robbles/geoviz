@@ -172,10 +172,10 @@ source.addEventListener('location', function(e) {
 
 				<section>
           <section>
-            <h2>Node.js</h2>
+            <h2>node.js</h2>
             <ul>
               <li>So hot right now</li>
-              <li>Write event-driven JavaScript on the server</li>
+              <li>Event-driven JavaScript on the server</li>
               <li>Works pretty well for building "real-time" apps and gluing different tech together</li>
             </ul>
           </section>
@@ -240,31 +240,39 @@ app.get('/events', function(req, res) {
         <!-- BACK-END INFRASTRUCTURE STUFF -->
 				<section>
 					<h2>Logstash</h2>
-				</section>
-
-				<section>
-					<h2>IP Geolocation</h2>
-				</section>
-
-				<section>
-					<h2>Redis</h2>
-				</section>
-
-        <!-- EXTRA STUFF TO TALK ABOUT -->
-				<section>
-					<h2>Bonus</h2>
+          <img src="/img/logstash.png" height="200" alt="Logstash" />
           <ul>
-            <li>Show server logs from your app</li>
-            <li>Plotting real-time tweet data</li>
+            <li>A tool for parsing, rewriting and shipping logs</li>
+            <li>Acts like a continuous pipeline of events</li>
+            <li>Connects to almost everything (log files, queues, sockets, DBs, etc.)</li>
+            <li>IP -> Geo is built-in</li>
           </ul>
 				</section>
 
 				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
+					<h2>IP Geolocation</h2>
+          <ul>
+            <li>Uses free MaxMind GeoIP database</li>
+            <li>Not very accurate</li>
+            <li>Kansas?</li>
+          </ul>
+				</section>
+
+				<section>
+					<h2>Redis</h2>
+          <ul>
+            <li>Advanced key-Value datastore with publish/subscribe</li>
+            <li>Our API servers publish events here that get picked up by Logstash</li>
+          </ul>
+				</section>
+
+        <!-- EXTRA STUFF TO TALK ABOUT -->
+				<section>
+					<h2>Ideas</h2>
+          <ul>
+            <li>Show server logs from your app</li>
+            <li>Plotting real-time tweet data</li>
+          </ul>
 				</section>
 
 			</div>
