@@ -1,0 +1,16 @@
+{
+  "@version":"1",
+  "@timestamp":"2014-09-20T02:11:57.681Z",
+  "type":"offers:served",
+  "offer":"3585b8da3f5011e4a11a12313f063e60",
+  "user_id":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "geoip":{
+    "country_code2":"US",
+    "country_name":"United States",
+    "city_name":"Louisville",
+    "latitude":38.2542,
+    "longitude":-85.7594,
+    "timezone":"America/New_York"
+  },
+  "tags":["geo"]
+}
