@@ -14,7 +14,7 @@ L.tileLayer('http://{s}.tiles.mapbox.com/v3/pretio.jhgjhh79/{z}/{x}/{y}.png', {
 function addPoint(latitude, longitude, text) {
 
   var customMarker = L.icon([latitude, longitude], {
-    iconUrl: 'l../img/marker.png"',
+    iconUrl: '../img/marker.png"',
 
     iconSize:     [50, 68], // size of the icon
     iconAnchor:   [25, 68], // point of the icon which will correspond to marker's location
