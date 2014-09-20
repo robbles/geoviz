@@ -179,10 +179,10 @@ source.addEventListener('location', function(e) {
 
 				<section>
           <section>
-            <h2>Node.js</h2>
+            <h2>node.js</h2>
             <ul>
               <li>So hot right now</li>
-              <li>Write event-driven JavaScript on the server</li>
+              <li>Event-driven JavaScript on the server</li>
               <li>Works pretty well for building "real-time" apps and gluing different tech together</li>
             </ul>
           </section>
@@ -213,8 +213,8 @@ var udpServer = udp.createSocket('udp4', function(msg, remote) {
   }
 });
 
-// Listen for UDP messages on port 6306
-udpServer.bind(6306, '0.0.0.0');
+// Listen for UDP messages
+udpServer.bind(PORT, '0.0.0.0');
             </code></pre>
           </section>
 
@@ -246,15 +246,64 @@ app.get('/events', function(req, res) {
 
         <!-- BACK-END INFRASTRUCTURE STUFF -->
 				<section>
-					<h2>Logstash</h2>
+          <section>
+            <h2>Logstash</h2>
+            <img src="/img/logstash.png" height="200" alt="Logstash" />
+            <ul>
+              <li>A tool for parsing, rewriting and shipping logs</li>
+              <li>Acts like a continuous pipeline of events</li>
+              <li>Connects to almost everything (log files, queues, sockets, DBs, etc.)</li>
+              <li>IP -> Geo is built-in</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Sample Logstash Config</h3>
+            <pre><code class="ruby" style="min-height: 500px">input {
+  redis {
+    data_type => channel
+    host => "redis.server"
+    port => 6379
+    key => logs:offer_serving
+    codec => json
+  }
+}
+
+filter {
+  grok {
+    match => [ "[ip]", "%{IP:client_ip}" ]
+  }
+  geoip {
+    source => client_ip
+  }
+}
+
+output {
+  udp {
+    codec => json
+    host => "geo.pretio.in"
+    port => 3847
+  }
+}
+            </code></pre>
+          </section>
 				</section>
 
 				<section>
 					<h2>IP Geolocation</h2>
+          <ul>
+            <li>Uses free MaxMind GeoIP database</li>
+            <li>Not very accurate</li>
+            <li>Kansas?</li>
+          </ul>
 				</section>
 
 				<section>
 					<h2>Redis</h2>
+          <ul>
+            <li>Advanced key-value datastore</li>
+            <li>Our API servers publish events here that get picked up by Logstash</li>
+          </ul>
 				</section>
 
         <section>
@@ -276,8 +325,8 @@ app.get('/events', function(req, res) {
         </section>
 
         <!-- EXTRA STUFF TO TALK ABOUT -->
-        <section>
-          <h2>Bonus</h2>
+				<section>
+					<h2>Ideas</h2>
           <ul>
             <li>Show server logs from your app</li>
             <li>Plotting real-time tweet data</li>
