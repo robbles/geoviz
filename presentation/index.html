@@ -31,6 +31,16 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+
+    <style type="text/css">
+      .show-fullscreen {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      :-webkit-full-screen #demo1 {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    </style>
 	</head>
 
 	<body>
@@ -107,7 +117,8 @@
 				  </section>
 
           <section>
-            <iframe class="image" width=900 height=800 src="http://geo.pretio.in/"></iframe>
+            <iframe id="demo1" class="image" width=900 height=800 webkitallowfullscreen="true" allowfullscreen="true" src="http://geo.pretio.in/"></iframe>
+            <a href="#demo1" class="show-fullscreen">fullscreen</a>
           </section>
         </section>
 
@@ -343,6 +354,7 @@ output {
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
+		<script src="js/jquery.js"></script>
 
 		<script>
 
@@ -371,6 +383,15 @@ output {
 					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
+
+      // Show elements in fullscreen
+      $('.show-fullscreen').on('click', function() {
+        var target = $($(this).attr('href'));
+        console.log('showing fullscreen: ' + target);
+        target.get(0).webkitRequestFullscreen();
+
+        return false;
+      });
 
 		</script>
 
