@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -100,31 +100,144 @@
 				<section>
 					<h2>Quick Demo</h2>
           <iframe class="image" width=900 height=600 src="http://geo.pretio.in/"></iframe>
-          <>
+          Check it out at <a href="http://geo.pretio.in">http://geo.pretio.in</a>
 				</section>
 
         <!-- FRONT-END APP STUFF -->
 				<section>
 					<h2>The Map</h2>
+          <ul>
+            <li>Uses <a href="http://leafletjs.com/">Leaflet.js</a></li>
+            <li>The markers are custom designed by Pretio creatives...</li>
+          </ul>
 				</section>
 
 				<section>
-					<h2>Server-Sent Events</h2>
+          <section>
+            <h2>Server-Sent Events</h2>
+            <ul>
+              <li>A sort-of new HTML5 technology for streaming data to the browser</li>
+              <li>Send data in real-time from a server</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Why not Websockets??</h2>
+            <ul>
+              <li>Websockets are bidirectional and allow more flexibility</li>
+              <li>Require special server support and are hard to deploy / manage</li>
+              <hr>
+              <li>SSE is just lines of text from a long HTTP connection</li>
+              <li>SSE auto reconnects from the browser!</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Server-Sent Event Protocol</h3>
+            <pre><code>
+event: notification
+data: hello world
+
+event: location
+data: {
+data:   "latitude": 38.2542,
+data:   "longitude": -85.7594
+data: }
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>In the browser</h3>
+            <pre><code>
+// Connect to server
+var source = new EventSource('server/path/to/events');
+
+source.addEventListener('open', function(e) {
+  console.log('Connected!');
+});
+
+// Listen for "location" events
+source.addEventListener('location', function(e) {
+
+  // We're sending data as JSON
+  var data = JSON.parse(e.data);
+
+  displayOnMap(data.latitude, data.longitude);
+
+});
+            </code></pre>
+          </section>
 				</section>
 
-				<section>
-					<h2>Why not Websockets??</h2>
-				</section>
 
 				<section>
-					<h2>Node.js</h2>
+          <section>
+            <h2>Node.js</h2>
+            <ul>
+              <li>So hot right now</li>
+              <li>Write event-driven JavaScript on the server</li>
+              <li>Works pretty well for building "real-time" apps and gluing different tech together</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>The app</h2>
+            <ul>
+              <li>Uses <a href="http://expressjs.com/">Express</a> for rendering page</li>
+              <li>Simple UDP server that receives events</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Listening for new UDP packets</h3>
+            <pre><code class="javascript">
+var udpServer = udp.createSocket('udp4', function(msg, remote) {
+
+  console.log('Received message from ' + remote.address + ':' + remote.port);
+
+  try {
+    var data = JSON.parse(msg);
+
+    // Send out as event
+    events.emit('received', data);
+
+  } catch(err) {
+    console.error('Error parsing message: ' + err);
+  }
+});
+
+// Listen for UDP messages on port 6306
+udpServer.bind(6306, '0.0.0.0');
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Event Stream</h3>
+            <pre><code class="javascript">
+app.get('/events', function(req, res) {
+
+  console.log('New client connected!');
+
+  res.status(200)
+  .set({
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  });
+
+  // Listen for events from UDP server
+  events.on('received', function(data) {
+    // Send new "location" event to browser
+    res.write('event: location\n');
+    res.write('data: ' + JSON.stringify(data) + '\n\n');
+  });
+});
+
+            </code></pre>
+          </section>
 				</section>
 
         <!-- BACK-END INFRASTRUCTURE STUFF -->
-				<section>
-					<h2>Sending Data with UDP</h2>
-				</section>
-
 				<section>
 					<h2>Logstash</h2>
 				</section>
