@@ -13,6 +13,10 @@ L.tileLayer('http://{s}.tiles.mapbox.com/v3/pretio.jhgjhh79/{z}/{x}/{y}.png', {
 
 function addPoint(latitude, longitude, text) {
 
+  if(!text) {
+    return;
+  }
+
   var customMarker = L.icon({
     iconUrl: '../img/marker.png',
 
