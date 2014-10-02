@@ -1,6 +1,6 @@
 // settings
 var pointTimeout = 10000;
-var zoom = 5;
+var zoom = 1;
 var center = [39.64, -98.086];
 
 // Setup map
@@ -8,7 +8,7 @@ var map = L.map('map').setView(center, zoom);
 
 L.tileLayer('http://{s}.tiles.mapbox.com/v3/pretio.jhgjhh79/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    minZoom: zoom, maxZoom: zoom
+    //minZoom: zoom, maxZoom: zoom
 }).addTo(map);
 
 function addPoint(latitude, longitude, text) {
