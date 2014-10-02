@@ -1,7 +1,7 @@
 // settings
 var pointTimeout = 10000;
-var zoom = 1;
-var center = [39.64, -98.086];
+var zoom = 2;
+var center = [48.4153294, -123.3671972];
 
 // Setup map
 var map = L.map('map').setView(center, zoom);
