@@ -18,11 +18,11 @@ function addPoint(latitude, longitude, text) {
   }
 
   var customMarker = L.icon({
-    iconUrl: '../img/marker.png',
+    iconUrl: '../img/marker-small.png',
 
-    iconSize:     [25, 34], // size of the icon
-    iconAnchor:   [12, 34], // point of the icon which will correspond to marker's location
-    popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
+    iconSize:     [12, 16], // size of the icon
+    iconAnchor:   [6, 16], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -16] // point from which the popup should open relative to the iconAnchor
   });
 
   var marker = L.marker([latitude, longitude, text], {icon: customMarker});

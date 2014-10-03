@@ -13,6 +13,16 @@ a {
 
 #map { height: 640px; }
 
+#logo {
+  position: absolute;
+  opacity: 0.5;
+  width: 300px;
+  height: 118px;
+  bottom: 20px;
+  left: 20px;
+  background-image: url('../img/pretio-logo.png');
+}
+
 .leaflet-marker-pane img {
 	position: relative;
     -webkit-animation: fadein 10s; /* Safari, Chrome and Opera > 12.1 */
