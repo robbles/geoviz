@@ -1,7 +1,7 @@
 // settings
 var pointTimeout = 10000;
 var zoom = 2;
-var center = [48.4153294, -123.3671972];
+var center = [40.0, 0.0];
 
 // Setup map
 var map = L.map('map').setView(center, zoom);
@@ -20,9 +20,9 @@ function addPoint(latitude, longitude, text) {
   var customMarker = L.icon({
     iconUrl: '../img/marker.png',
 
-    iconSize:     [50, 68], // size of the icon
-    iconAnchor:   [25, 68], // point of the icon which will correspond to marker's location
-    popupAnchor:  [0, -68] // point from which the popup should open relative to the iconAnchor
+    iconSize:     [25, 34], // size of the icon
+    iconAnchor:   [12, 34], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -34] // point from which the popup should open relative to the iconAnchor
   });
 
   var marker = L.marker([latitude, longitude, text], {icon: customMarker});
